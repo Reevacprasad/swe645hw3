@@ -10,22 +10,22 @@ pipeline {
 				script {
 					checkout scm
 					sh 'echo ${BUILD_TIMESTAMP}'
-					sh 'docker login -u surbhikharche -p ${DOCKERHUB_PASS_PSW}'
+					sh 'docker login -u rprasad6 -p ${DOCKERHUB_PASS_PSW}'
 					sh 'mvn clean package'
-					def customImage = docker.build("surbhikharche/hw3-springboot-app:${BUILD_TIMESTAMP}")
+					def customImage = docker.build("rprasad6/hw3:${BUILD_TIMESTAMP}")
 				}
 			}
 		}
 		stage("Pushing image to Dockerhub") {
 			steps {
 				script {
-					sh 'docker push surbhikharche/hw3-springboot-app:${BUILD_TIMESTAMP}'
+					sh 'docker push rprasad6/hw3:${BUILD_TIMESTAMP}'
 				}
 			}
 		}
 		stage("Deploying to Rancher as single pod") {
 			steps {
-				sh 'kubectl set image deployment/deployment-hw3 container-hw3=surbhikharche/hw3-springboot-app:${BUILD_TIMESTAMP} -n default'
+				sh 'kubectl set image deployment/deployment-hw3 container-hw3=rprasad6/hw3:${BUILD_TIMESTAMP} -n default'
 			}
 		}
 	}
