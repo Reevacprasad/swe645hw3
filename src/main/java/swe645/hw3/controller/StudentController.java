@@ -51,4 +51,9 @@ public class StudentController {
 		studentService.deleteStudent(id);
 		return new ResponseEntity<String>("Student deleted successfully.", HttpStatus.OK);
 	}
+	
+	 @GetMapping("/hello")
+	    public String home() {
+	        return "Welcome to my application!";
+	    }
 }
