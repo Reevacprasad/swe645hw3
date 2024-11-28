@@ -1,32 +1,44 @@
 pipeline {
-	agent any
-	environment {
-		DOCKERHUB_PASS = credentials('docker-pass')
-		BUILD_TIMESTAMP = new Date().format("yyyyMMdd-HHmmss", TimeZone.getTimeZone("UTC"))
-	}
-	stages {
-		stage("Building the Springboot application image") {
-			steps {
-				script {
-					checkout scm
-					sh 'echo ${BUILD_TIMESTAMP}'
-					sh 'docker login -u gopalchada10010 -p ${DOCKERHUB_PASS_PSW}'
-					sh 'mvn clean package'
-					def customImage = docker.build("gopalchada10010/swe645:01:${BUILD_TIMESTAMP}")
-				}
-			}
-		}
-		stage("Pushing image to Dockerhub") {
-			steps {
-				script {
-					sh 'docker push gopalchada10010/swe645:01:${BUILD_TIMESTAMP}'
-				}
-			}
-		}
-		stage("Deploying to Rancher as single pod") {
-			steps {
-				sh 'kubectl set image deployment/deployment-hw3 container-hw3=gopalchada10010/swe645:01:${BUILD_TIMESTAMP} -n default'
-			}
-		}
-	}
+    agent any
+    environment {
+        DOCKERHUB_PASS = credentials('docker-pass') // Credential ID for DockerHub username/password
+        BUILD_TIMESTAMP = new Date().format("yyyyMMdd-HHmmss", TimeZone.getTimeZone("UTC"))
+    }
+    stages {
+        stage("Building the Spring Boot Application Image") {
+            steps {
+                script {
+                    checkout scm
+                    echo "Build timestamp: ${BUILD_TIMESTAMP}"
+                    
+                    // Login to DockerHub
+                    sh '''
+                        echo "${DOCKERHUB_PASS_PSW}" | docker login -u gopalchada10010 --password-stdin
+                    '''
+
+                    // Build the application using Maven
+                    sh 'mvn clean package'
+
+                    // Build the Docker image
+                    sh "docker build -t gopalchada10010/swe645:01-${BUILD_TIMESTAMP} ."
+                }
+            }
+        }
+        stage("Pushing Image to DockerHub") {
+            steps {
+                script {
+                    // Push the image to DockerHub
+                    sh "docker push gopalchada10010/swe645:01-${BUILD_TIMESTAMP}"
+                }
+            }
+        }
+        stage("Deploying to Rancher as a Single Pod") {
+            steps {
+                script {
+                    // Update the Kubernetes deployment with the new image
+                    sh "kubectl set image deployment/deployment-hw3 container-hw3=gopalchada10010/swe645:01-${BUILD_TIMESTAMP} -n default"
+                }
+            }
+        }
+    }
 }
