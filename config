@@ -1,32 +1,32 @@
 apiVersion: v1
 kind: Config
 clusters:
-- name: "hw3-rancher"
+- name: "hw3-cluster"
   cluster:
-    server: "https://ec2-44-222-139-170.compute-1.amazonaws.com/k8s/clusters/c-m-fgbvchvh"
+    server: "https://ec2-34-237-54-212.compute-1.amazonaws.com/k8s/clusters/c-m-hw7g8fkp"
     certificate-authority-data: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJ2akNDQ\
       VdPZ0F3SUJBZ0lCQURBS0JnZ3Foa2pPUFFRREFqQkdNUnd3R2dZRFZRUUtFeE5rZVc1aGJXbGoKY\
       kdsemRHVnVaWEl0YjNKbk1TWXdKQVlEVlFRRERCMWtlVzVoYldsamJHbHpkR1Z1WlhJdFkyRkFNV\
-      GN6TWpneQpPREEwTURBZUZ3MHlOREV4TWpneU1UQTNNakJhRncwek5ERXhNall5TVRBM01qQmFNR\
+      GN6TWprMApOVGczTmpBZUZ3MHlOREV4TXpBd05UVXhNVFphRncwek5ERXhNamd3TlRVeE1UWmFNR\
       Vl4SERBYUJnTlZCQW9UCkUyUjVibUZ0YVdOc2FYTjBaVzVsY2kxdmNtY3hKakFrQmdOVkJBTU1IV\
-      1I1Ym1GdGFXTnNhWE4wWlc1bGNpMWoKWVVBeE56TXlPREk0TURRd01Ga3dFd1lIS29aSXpqMENBU\
-      VlJS29aSXpqMERBUWNEUWdBRTlacXc2VGRldStKcgpPbUs3cURJcmkxL1V3Wm1JNE5haWpSMEJZa\
-      k9MSlRybzh0L1c5T29VQURtcDg2emhFR0J0MG5jVFdScmFMOGZ6Cm1sVWx0SHZtWWFOQ01FQXdEZ\
-      1lEVlIwUEFRSC9CQVFEQWdLa01BOEdBMVVkRXdFQi93UUZNQU1CQWY4d0hRWUQKVlIwT0JCWUVGQ\
-      1ZrTjJoaVljNFdNVFMvSW5CRnNhQXZjQ1RjTUFvR0NDcUdTTTQ5QkFNQ0Ewa0FNRVlDSVFDdQpDO\
-      UwzSUFScUVnTjZCZ21JRlE2L1BjMTg0ZWdJTlVGb3k1V2k3WUxHVXdJaEFNYTVsNldxZEt4OVFjb\
-      2RDN1Y3CmZ2cFhNdUNRMlY3WGhvSm1NemdkMGE0OAotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t"
+      1I1Ym1GdGFXTnNhWE4wWlc1bGNpMWoKWVVBeE56TXlPVFExT0RjMk1Ga3dFd1lIS29aSXpqMENBU\
+      VlJS29aSXpqMERBUWNEUWdBRXRkd0JsdVBZYWFTSQplN1pHWTlJSWM1a3NTeGRaNGFQSEVDTDN2O\
+      UtCcUZMUnRmV2h3dXFZSksvZk5oZGI2cTlJOXF6UXVUdkRrTHR5CjZSZWZhNDZ3bmFOQ01FQXdEZ\
+      1lEVlIwUEFRSC9CQVFEQWdLa01BOEdBMVVkRXdFQi93UUZNQU1CQWY4d0hRWUQKVlIwT0JCWUVGR\
+      GFPYnhYM0FYaE1LNHhyS3NzU1BsUW11TFNMTUFvR0NDcUdTTTQ5QkFNQ0Ewa0FNRVlDSVFDUgpyZ\
+      VN1aWFjald6M0ZxTFdKR2dPaFJERDZFbVdTdnlYQlJmamNDN3hoM2dJaEFNakNvOHpyZk1NcWU3Z\
+      GE0U1lMCmhwdGRlcThDaHlLRzF1RElVL3lOTzBUMwotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t"
 
 users:
-- name: "hw3-rancher"
+- name: "hw3-cluster"
   user:
-    token: "kubeconfig-user-gvqf6xltjm:6hvnf6sfg4bwpd9fq9sgd8ssfv4jrxd6wrgzx8rhrjktr2hqwg7fkj"
+    token: "kubeconfig-user-fft9tx75bd:c8gpg6rmr85dp5cjzzb4dqzcv8v5q7ckm7f2dgv75f6bpdzmdb8jm7"
 
 
 contexts:
-- name: "hw3-rancher"
+- name: "hw3-cluster"
   context:
-    user: "hw3-rancher"
-    cluster: "hw3-rancher"
+    user: "hw3-cluster"
+    cluster: "hw3-cluster"
 
-current-context: "hw3-rancher"
+current-context: "hw3-cluster"

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: container-hw3
-          image: rprasad6/hw3_war:1.0
+          image: gopalchada10010/swe645:01
           ports:
             - containerPort: 8080
 
