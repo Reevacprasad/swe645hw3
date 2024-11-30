@@ -3,6 +3,7 @@ pipeline {
     environment {
         DOCKERHUB_PASS = credentials('docker-pass') // Credential ID for DockerHub username/password
         BUILD_TIMESTAMP = new Date().format("yyyyMMdd-HHmmss", TimeZone.getTimeZone("UTC"))
+        KUBECONFIG = '/path/to/your/kubeconfig' // Define your kubeconfig path here
     }
     stages {
         stage("Building the Spring Boot Application Image") {
@@ -32,9 +33,10 @@ pipeline {
                 }
             }
         }
-        stage("Deploy to kubernetes") {
+        stage("Deploy to Kubernetes") {
             steps {
-                withEnv(["KUBECONFIG=${kubeconfig}"]) {
+                // Use the KUBECONFIG environment variable to access the kubeconfig
+                withEnv(["KUBECONFIG=${env.KUBECONFIG}"]) {
                     // Update the Kubernetes deployment with the new image
                     sh "kubectl set image deployment/deployment-hw3 container-hw3=gopalchada10010/swe645:01-${BUILD_TIMESTAMP} -n default"
                 }
