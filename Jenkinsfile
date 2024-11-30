@@ -1,9 +1,8 @@
 pipeline {
     agent any
     environment {
-        DOCKERHUB_PASS = credentials('docker-pass') // Credential ID for DockerHub username/password
+        DOCKERHUB_PASS = credentials('docker-pass') // DockerHub credentials
         BUILD_TIMESTAMP = new Date().format("yyyyMMdd-HHmmss", TimeZone.getTimeZone("UTC"))
-        KUBECONFIG = '/path/to/your/kubeconfig' // Define your kubeconfig path here
     }
     stages {
         stage("Building the Spring Boot Application Image") {
@@ -11,7 +10,7 @@ pipeline {
                 script {
                     checkout scm
                     echo "Build timestamp: ${BUILD_TIMESTAMP}"
-                    
+
                     // Login to DockerHub
                     sh '''
                         echo "${DOCKERHUB_PASS_PSW}" | docker login -u gopalchada10010 --password-stdin
@@ -35,8 +34,9 @@ pipeline {
         }
         stage("Deploy to Kubernetes") {
             steps {
-                // Use the KUBECONFIG environment variable to access the kubeconfig
-                withEnv(["KUBECONFIG=${env.KUBECONFIG}"]) {
+                // Inject kubeconfig from Jenkins credentials store
+                withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+
                     // Update the Kubernetes deployment with the new image
                     sh "kubectl set image deployment/deployment-hw3 container-hw3=gopalchada10010/swe645:01-${BUILD_TIMESTAMP} -n default"
                 }
