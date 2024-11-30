@@ -34,7 +34,7 @@ pipeline {
         }
         stage("Deploy to kubernetes") {
             steps {
-                withEnv(["KUBECONFIG=${KUBECONFIG_CREDENTIALS}"]) {
+                withEnv(["KUBECONFIG=${kubeconfig}"]) {
                     // Update the Kubernetes deployment with the new image
                     sh "kubectl set image deployment/deployment-hw3 container-hw3=gopalchada10010/swe645:01-${BUILD_TIMESTAMP} -n default"
                 }
