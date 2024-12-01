@@ -1,3 +1,7 @@
+// Group: Alpha1
+// File: Student.java
+// Description: Represents a student entity mapped to the "students" table in the database
+
 package swe645.hw3.model;
 
 import java.util.Date;

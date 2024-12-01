@@ -1,3 +1,7 @@
+// Group: Alpha1
+// File: ResourceNotFoundException.java
+// Description: Custom exception to handle cases where a resource is not found
+
 package swe645.hw3.exception;
 
 import org.springframework.http.HttpStatus;

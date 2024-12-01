@@ -1,13 +1,19 @@
+ // Group: Alpha1
+ // File: Jenkinsfile
+ // Description: To define CI/CD pipeline for Docker Image Buliding and pushing, deploying to Kubernetes cluster
+ 
 pipeline {
     agent any
     environment {
         DOCKERHUB_PASS = credentials('docker-pass') // DockerHub credentials
-        BUILD_TIMESTAMP = new Date().format("yyyyMMdd-HHmmss", TimeZone.getTimeZone("UTC"))
+        BUILD_TIMESTAMP = new Date().format("yyyyMMdd-HHmmss", TimeZone.getTimeZone("UTC")) // Use a timestamp for image tagging
     }
     stages {
         stage("Building the Spring Boot Application Image") {
             steps {
                 script {
+				
+					// Fetch the current SCM and print the timestamp
                     checkout scm
                     echo "Build timestamp: ${BUILD_TIMESTAMP}"
 

@@ -1,3 +1,7 @@
+// Group: Alpha1
+// File: StudentServiceImpl.java
+// Description: Implementation of the StudentService interface, providing business logic for CRUD operations on student data.
+
 package swe645.hw3.service.impl;
 
 import org.springframework.stereotype.Service;

@@ -1,3 +1,7 @@
+# Group: Alpha1
+# File: Dockerfile
+# Description: To create a Docker Image
+
 # Use an official Java runtime as a parent image
 FROM openjdk:23-jdk-slim
 
