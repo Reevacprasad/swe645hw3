@@ -1,7 +1,7 @@
 swe645\hw3\service\impl\StudentServiceImpl.class
 swe645\hw3\controller\StudentController.class
+swe645\hw3\Hw3Application.class
+swe645\hw3\repository\StudentRepository.class
 swe645\hw3\exception\ResourceNotFoundException.class
 swe645\hw3\model\Student.class
 swe645\hw3\service\StudentService.class
-swe645\hw3\Hw3Application.class
-swe645\hw3\repository\StudentRepository.class
